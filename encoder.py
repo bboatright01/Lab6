@@ -6,12 +6,10 @@ def encode_password(password):
     encoded = ''.join(str((int(char) + 3) % 10) for char in password)
     return encoded
 
-# Define the function to decode the password
-def decode_password(encoded_password):
+def decode(encoded_password):
     if not isinstance(encoded_password, str) or len(encoded_password) != 8 or not encoded_password.isdigit():
-        return "Invalid input. Please provide an 8-digit encoded password containing only integers."
-    decoded = ''.join(str((int(char) - 3) % 10) for char in encoded_password)
-    return decoded
+        raise ValueError("Input is not an 8-digit password containing only integers.")
+    return "".join(map(lambda c: str((int(c) - 3) % 10), encoded_password))
 
 # Program with menu for encoding or decoding
 def password_encoder_decoder_program():
@@ -29,7 +27,7 @@ def password_encoder_decoder_program():
 
         elif choice == '2':
             encoded_password = input("Enter an 8-digit encoded password to decode: ")
-            decoded = decode_password(encoded_password)
+            decoded = decode(encoded_password)
             print(f"Decoded Password: {decoded}")
 
         elif choice == '3':
