@@ -6,7 +6,7 @@ def encode(password):
         raise ValueError("Input is not an 8-digit password containing only integers.")
     encoded = ''.join(str((int(char) + 3) % 10) for char in password)
     return encoded
-
+# Erick Leaf added decoder here
 def decode(encoded_password):
     if not isinstance(encoded_password, str) or len(encoded_password) != 8 or not encoded_password.isdigit():
         raise ValueError("Input is not an 8-digit password containing only integers.")
